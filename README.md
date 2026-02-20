@@ -20,6 +20,7 @@ The production service implementation is not included here.
 
 ### Public in this repository
 - `ARCHITECTURE.md` - pipeline overview
+- `DESIGN.md` - design principles and validation semantics
 - `schema/event.schema.json` - event contract
 - `METRICS.md` - current benchmark status and known gaps
 - `CHANGELOG.md` - published changes
@@ -75,9 +76,10 @@ Known gap: full end-to-end latency and weak-category recall still need measurabl
 ## Quickstart
 This repo is documentation-first. Start here:
 1. `ARCHITECTURE.md` - pipeline overview
-2. `schema/event.schema.json` - event contract
-3. `METRICS.md` - current benchmark status and gaps
-4. `CHANGELOG.md` - what changed and when
+2. `DESIGN.md` - principles and validation boundaries
+3. `schema/event.schema.json` - event contract
+4. `METRICS.md` - current benchmark status and gaps
+5. `CHANGELOG.md` - what changed and when
 
 Validate a local `event.json` against the public schema:
 
@@ -92,12 +94,12 @@ python -m jsonschema -i event.json schema/event.schema.json
 - Coverage and quality vary by category, region, language, and report quality.
 - Full end-to-end latency is not yet published in the current metrics file.
 - This repository publishes the public contract and docs, not production anti-abuse internals.
-- `ARCHITECTURE.md` currently references `DESIGN.md`, which is not yet published in this repo.
+- Validation in this context means pipeline-level checks, not guaranteed ground truth.
 
 ## Roadmap (90 days)
 ### Days 1-30: credibility baseline
 - finalize README v2 and scope language
-- publish `DESIGN.md` and `THREAT_MODEL.md`
+- publish `THREAT_MODEL.md`
 - add synthetic examples and schema validation scripts
 
 ### Days 31-60: measurement discipline

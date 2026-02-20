@@ -1,14 +1,20 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/erz-mentat/hadrian-open/main/schema/event.schema.json",
   "title": "HADRIAN Event",
-  "description": "A validated citizen-report event produced by the HADRIAN pipeline.",
-  "version": "1",
+  "description": "A structured citizen-report event produced by the HADRIAN pipeline.",
+  "version": "1.1",
   "type": "object",
   "required": ["id", "category", "severity", "confidence", "raw_text", "normalized_text", "tags"],
+  "dependentRequired": {
+    "lat": ["lon"],
+    "lon": ["lat"]
+  },
   "properties": {
     "id": {
       "type": "string",
-      "description": "Unique event identifier."
+      "description": "Unique event identifier.",
+      "minLength": 1
     },
     "category": {
       "type": "string",
@@ -28,17 +34,35 @@
       "description": "How sure are we the report is accurate? (epistemic, never mixed with severity)"
     },
     "when_iso": {
-      "type": ["string", "null"],
-      "description": "ISO 8601 timestamp. Null if unknown."
+      "anyOf": [
+        { "type": "string", "format": "date-time" },
+        { "type": "null" }
+      ],
+      "description": "ISO 8601 timestamp (date-time). Null if unknown."
     },
     "where_text": {
       "type": ["string", "null"],
       "description": "Raw location string from the report."
     },
-    "lat": { "type": ["number", "null"] },
-    "lon": { "type": ["number", "null"] },
+    "lat": {
+      "anyOf": [
+        { "type": "number", "minimum": -90, "maximum": 90 },
+        { "type": "null" }
+      ],
+      "description": "Latitude in decimal degrees."
+    },
+    "lon": {
+      "anyOf": [
+        { "type": "number", "minimum": -180, "maximum": 180 },
+        { "type": "null" }
+      ],
+      "description": "Longitude in decimal degrees."
+    },
     "location_uncertainty_m": {
-      "type": ["number", "null"],
+      "anyOf": [
+        { "type": "number", "minimum": 0 },
+        { "type": "null" }
+      ],
       "description": "Estimated location uncertainty radius in meters."
     },
     "cluster_id": {
@@ -47,10 +71,20 @@
     },
     "tags": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1,
+      "uniqueItems": true
     },
-    "raw_text": { "type": "string" },
-    "normalized_text": { "type": "string" },
+    "raw_text": {
+      "type": "string",
+      "description": "Original report text. May contain sensitive data and should be handled carefully.",
+      "minLength": 1
+    },
+    "normalized_text": {
+      "type": "string",
+      "description": "Normalized report text used by downstream stages.",
+      "minLength": 1
+    },
     "explanation": {
       "type": "array",
       "description": "Audit trail — why each decision was made.",
@@ -58,8 +92,8 @@
         "type": "object",
         "required": ["step", "reason"],
         "properties": {
-          "step": { "type": "string" },
-          "reason": { "type": "string" }
+          "step": { "type": "string", "minLength": 1 },
+          "reason": { "type": "string", "minLength": 1 }
         }
       }
     }
