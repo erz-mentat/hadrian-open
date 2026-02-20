@@ -21,8 +21,12 @@ The production service implementation is not included here.
 ### Public in this repository
 - `ARCHITECTURE.md` - pipeline overview
 - `DESIGN.md` - design principles and validation semantics
+- `THREAT_MODEL.md` - abuse and adversary model
+- `GOVERNANCE.md` - change and release rules
 - `schema/event.schema.json` - event contract
+- `schema/MIGRATION.md` - schema migration notes
 - `METRICS.md` - current benchmark status and known gaps
+- `METHODS.md` - metric definitions and reporting protocol
 - `CHANGELOG.md` - published changes
 
 ### Private / not included here
@@ -77,9 +81,11 @@ Known gap: full end-to-end latency and weak-category recall still need measurabl
 This repo is documentation-first. Start here:
 1. `ARCHITECTURE.md` - pipeline overview
 2. `DESIGN.md` - principles and validation boundaries
-3. `schema/event.schema.json` - event contract
-4. `METRICS.md` - current benchmark status and gaps
-5. `CHANGELOG.md` - what changed and when
+3. `THREAT_MODEL.md` - abuse model and mitigations
+4. `schema/event.schema.json` - event contract
+5. `METHODS.md` - how metrics are measured
+6. `METRICS.md` - current benchmark status and gaps
+7. `CHANGELOG.md` - what changed and when
 
 Validate a local `event.json` against the public schema:
 
@@ -97,19 +103,19 @@ python -m jsonschema -i event.json schema/event.schema.json
 - Validation in this context means pipeline-level checks, not guaranteed ground truth.
 
 ## Roadmap (90 days)
-### Days 1-30: credibility baseline
-- finalize README v2 and scope language
-- publish `THREAT_MODEL.md`
+### Days 1-30: baseline hardening (in progress)
+- stabilize README + design/safety/governance docs
 - add synthetic examples and schema validation scripts
+- keep contract language aligned across docs
 
 ### Days 31-60: measurement discipline
-- publish `METHODS.md` with reproducible evaluation protocol
-- add first end-to-end latency measurement
-- publish schema v1.1 with migration notes
+- publish first end-to-end latency measurement
+- expand category-level precision/recall reporting
+- add confidence calibration and dedup quality slices
 
 ### Days 61-90: public adoption surface
 - publish a synthetic demo event feed (+ minimal viewer or walkthrough)
-- add `GOVERNANCE.md` and operator-facing safety notes
+- add schema examples + compatibility checks in CI
 - cut a tagged release with docs, schema, metrics, and examples
 
 ## Follow

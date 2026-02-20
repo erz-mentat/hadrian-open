@@ -1,6 +1,10 @@
 # Changelog
 
 ## [Unreleased]
+- Added `THREAT_MODEL.md`, `GOVERNANCE.md`, and `METHODS.md`
+- Added `schema/MIGRATION.md` for v1.0 -> v1.1 schema changes
+- Updated `README.md` public artifact index and roadmap wording
+- Refreshed `METRICS.md` language to align with `METHODS.md`
 
 ## [0.2.0] — 2026-02-20
 - Reworked `README.md` with clearer scope, status, limitations, and 90-day roadmap
