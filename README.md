@@ -77,6 +77,13 @@ What currently works:
 
 Known gap: full end-to-end latency and weak-category recall still need measurable improvement before stronger reliability claims.
 
+## Current engineering focus (Block 5, private implementation)
+- Operator-speed UX in Ops workbench (keyboard flow, bulk actions, pagination, loading/latency visibility)
+- Human-in-the-loop safety (clear review-required signals, safer override confirmations)
+- Explainability upgrades (decision timeline + "what changed" diffs for operators)
+
+Note: these are implementation-track changes in the private service repo; this public repo will publish the corresponding contract/docs updates as they stabilize.
+
 ## Quickstart
 This repo is documentation-first. Start here:
 1. `ARCHITECTURE.md` - pipeline overview

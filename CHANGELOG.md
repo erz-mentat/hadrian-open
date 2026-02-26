@@ -1,6 +1,8 @@
 # Changelog
 
 ## [Unreleased]
+- Added "Current engineering focus (Block 5)" note in `README.md` (operator speed, HITL safety, explainability)
+- Added public/private clarification that implementation-track changes land first in private service repo, then in this public contract/docs repo
 - Added `THREAT_MODEL.md`, `GOVERNANCE.md`, and `METHODS.md`
 - Added `schema/MIGRATION.md` for v1.0 -> v1.1 schema changes
 - Updated `README.md` public artifact index and roadmap wording
