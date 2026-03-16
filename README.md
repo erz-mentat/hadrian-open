@@ -127,4 +127,3 @@ python -m jsonschema -i event.json schema/event.schema.json
 
 ## Follow
 - X: https://x.com/erz_qwzhdrch
-- Substack: https://substack.com/@erzhadrian
